@@ -35,10 +35,15 @@ Now that the URL shortner is running, we can use it as follows-
   ````
   curl -w "\n" http://localhost:8080/recover/type_the_short_URL_here
   ````
-  If the short URL has no corresponding URL in the database, `` will be returned. <br/>
+  If the short URL has no corresponding URL in the database, `Not Found in the database` will be returned. <br/>
   For example, If you want to check what URL is mapped to short url `abA2`, run the following command-<br/>
   
   ````
   curl -w "\n" http://localhost:8080/recover/abA2
   ````
-  
+## Testing
+If you want to test the url shortner, you can enter random URLs using the pyscript.py. For making **n** random URL requests, run the following command-<br/>
+
+````
+python3 pyscript.py n
+````
