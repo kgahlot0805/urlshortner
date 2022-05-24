@@ -1,21 +1,44 @@
-This is a URL shortner created using Java, Mongodb, spring boot and gradle.
+# URL SHORTNER <br/>
+A URL shortner created using Java, Mongodb, spring boot and gradle.
 
-To shorten a given URL (givenurl), visit `localhost:8080/shorten/givenurl`.<br/>
-The givenurl must be a valid url (it should start with `http://` or `https://`), else `Invalid URL` will be returned.<br/>
-The request will return a short url containing lower case and upper case alphabets and numbers in range [0-9].<br/>
-For eg - If we want to shorten `https://www.youtube.com/`, we have to visit `localhost:8080/shorten/https://www.youtube.com/`.<br/>
+## Features
+- Shorten a URL using rest endpoints
+- The short URL is a basic string made of lower case alphabets, upper case alphabets and numbers.
+- The URL gets saved in the database. Hence, we get the same short string every time for the same URL.
+- We can recover the original URL using the short URL corresonding to it.
 
-To recover the original url from a given short url (shorturl), visit `localhost:8080/recover/shorturl`.<br/>
-If the corresponding URL for this short url is present in the database, it will be returned.<br/>
-For eg - If we want to check what URL is mapped to short url `abA2`, we have to visit `localhost:8080/recover/abA2` and if any URL corresponding to this is present in the database, it will be returned.<br/>
-
-For connecting Mongodb to the project, only one collection needs to be created-<br/>
-Name - "shorturl"<br/>
-
-Schema
+## Setup
+Run the following command to build the project.
 ````
-{ 
-  urlString : String,
-  id : Integer 
-}
+./gradlew build
 ````
+Run the following command to run the project.
+````
+./gradlew bootRun
+````
+
+
+## Use
+Now that the URL shortner is running, we can use it as follows-
+- To shorten a given URL, run the following command-<br/>
+  ````
+  curl -w "\n" http://localhost:8080/shorten/type_Your_URL_here
+  ````
+  The URL provided in the request must be a valid URL(it should start with `http://` or `https://`), else `Invalid URL` will be returned.<br/>
+  For example, If you want to shorten `https://www.youtube.com`, run the following command-<br/>
+  
+  ````
+  curl -w "\n" http://localhost:8080/shorten/https://www.youtube.com
+  ````
+- To recover the original url from a given short url, run the following command-<br/>
+  
+  ````
+  curl -w "\n" http://localhost:8080/recover/type_the_short_URL_here
+  ````
+  If the short URL has no corresponding URL in the database, `` will be returned. <br/>
+  For example, If you want to check what URL is mapped to short url `abA2`, run the following command-<br/>
+  
+  ````
+  curl -w "\n" http://localhost:8080/recover/abA2
+  ````
+  
