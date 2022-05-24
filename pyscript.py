@@ -1,4 +1,4 @@
-
+import sys
 import os
 import random
 import time
@@ -6,7 +6,7 @@ import time
 start_time = time.time()
 
 preurl = "curl -w \"\\n\" http://localhost:8080/shorten/https://"
-c = 5
+c = int(sys.argv[1])
 for i in range(c):
   #len = random.randrange(6, 25)
   len=13
