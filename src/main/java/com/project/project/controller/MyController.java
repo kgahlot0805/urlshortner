@@ -21,6 +21,8 @@ public class MyController {
 
   @Autowired private UrlRepository urlRepository;
 
+  public static final String locateString = "locate_string";
+
   @GetMapping("/")
   public String home() {
     return "To shorten a url, visit /shorten/{url}\nTo recover original url, visit /recover/{url}";

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "shorturl")
 public class Url {
   private String urlString;
-  @Id private Integer id;
+  @Id private long id;
 
   public Url() {}
 
@@ -18,11 +18,11 @@ public class Url {
     this.urlString = urlString;
   }
 
-  public Integer getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(long id) {
     this.id = id;
   }
 }
