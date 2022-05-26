@@ -1,12 +1,13 @@
 package com.project.project.classes;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "shorturl")
 public class Url {
-  private String urlString;
-  @Id private long id;
+  @Indexed private String urlString;
+  @Indexed private long id;
 
   public Url() {}
 

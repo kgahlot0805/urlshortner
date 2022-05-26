@@ -31,6 +31,7 @@ public class MyController {
   // Controller handling shortening of URLs
   @RequestMapping("/shorten/**")
   public String shorten(HttpServletRequest request) {
+
     String fullUrl = request.getRequestURL().toString();
     String url = (fullUrl.split("/shorten/"))[1];
 
@@ -40,19 +41,25 @@ public class MyController {
     try {
       validURL = new URL(url);
       validURI = validURL.toURI();
-      System.out.println(validURI);
+      // System.out.println(validURI);
     } catch (Exception e) {
       System.out.println(e);
       return "Invalid URL";
     }
+
+    url = (url.split("://"))[1];
+    // System.out.println(url);
 
     Url checkUrl = shortServices.checkByString(url);
 
     if (checkUrl == null) {
       Url newUrl = new Url();
       newUrl.setUrlString(url);
+
       newUrl.setId((int) shortServices.maxId());
+
       urlRepository.save(newUrl);
+
       return shortServices.shortenUrl(newUrl.getId());
     }
     return shortServices.shortenUrl(checkUrl.getId());
@@ -66,6 +73,6 @@ public class MyController {
     if (ObjectUtils.isEmpty(checkUrl)) {
       return "Not Found in the database";
     }
-    return checkUrl.getUrlString();
+    return "https://" + checkUrl.getUrlString();
   }
 }
