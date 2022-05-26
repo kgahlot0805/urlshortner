@@ -47,7 +47,8 @@ public class MyController {
     }
 
     Url checkUrl = shortServices.checkByString(url);
-    if (ObjectUtils.isEmpty(checkUrl)) {
+
+    if (checkUrl == null) {
       Url newUrl = new Url();
       newUrl.setUrlString(url);
       newUrl.setId((int) shortServices.maxId());

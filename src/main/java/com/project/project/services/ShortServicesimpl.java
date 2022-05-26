@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import static com.project.project.controller.MyController.locateString;
 
-
 @Service
 public class ShortServicesimpl implements ShortServices {
   @Autowired private UrlRepository urlrepository;
@@ -40,13 +39,12 @@ public class ShortServicesimpl implements ShortServices {
 
   @Override
   public long maxId() {
-    if(counterrepository.findAll().size() == 1)
-    {
+    if (counterrepository.findAll().size() == 1) {
       Counter counter = counterrepository.findByLocate(locateString);
       long current = counter.getCount();
-      counter.setCount(current+1);
+      counter.setCount(current + 1);
       counterrepository.save(counter);
-      return current+1;
+      return current + 1;
     }
     Counter counter = new Counter();
     counter.setCount(1);

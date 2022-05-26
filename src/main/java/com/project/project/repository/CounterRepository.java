@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CounterRepository extends MongoRepository<Counter, String> {
-    Counter findByLocate(String locate);
+  Counter findByLocate(String locate);
 
-    Counter findByCount(long count);
+  Counter findByCount(long count);
 }
