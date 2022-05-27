@@ -39,14 +39,14 @@ public class ShortServicesimpl implements ShortServices {
 
   @Override
   public long maxId() {
-    if (counterrepository.findAll().size() == 1) {
-      Counter counter = counterrepository.findByLocate(locateString);
+    Counter counter = counterrepository.findByLocate(locateString);
+    if (counter != null) {
       long current = counter.getCount();
       counter.setCount(current + 1);
       counterrepository.save(counter);
       return current + 1;
     }
-    Counter counter = new Counter();
+    counter = new Counter();
     counter.setCount(1);
     counter.setLocate(locateString);
     counterrepository.save(counter);
